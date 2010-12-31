@@ -58,6 +58,10 @@ In most cases you want to use this option, otherwise each deploy will do a full 
 
 Remote caching will keep a local git repo on the server you're deploying to and simply run a fetch from that rather than an entire clone.  This is probably the best option as it will only fetch the changes since the last.
 
+If you regularly deploy different branches (such as on a staging server), add this directive to store each branch in a separate cache directory. It will save you from needing to delete the repository cache directory every time you deploy a different branch.
+
+<pre>set :repository_cache, "git_#{branch}".gsub(/\//, '_')</pre>
+
 h3. Shallow Clone
 
 As an alternative to the remote cache approach, you can use shallow cloning.
